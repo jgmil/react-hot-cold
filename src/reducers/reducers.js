@@ -1,4 +1,4 @@
-import {RESTART_GAME, MAKE_GUESS, GENERATE_AURAL_UPDATE} as actions from '../actions';
+import {RESTART_GAME, MAKE_GUESS, GENERATE_AURAL_UPDATE} from '../actions';
 
 const initialState = {
     guesses: [],
@@ -33,7 +33,6 @@ export const hotColdReducer = (state=initialState, action) => {
 
         const difference = Math.abs(guess - this.state.correctAnswer);
 
-           let feedback;
            if (difference >= 50) {
                feedback = 'You\'re Ice Cold...';
            } else if (difference >= 30) {
@@ -50,13 +49,14 @@ export const hotColdReducer = (state=initialState, action) => {
            guesses: [...state.guesses, guess],
            feedback,
        });
+   };
 
     if (action.type === GENERATE_AURAL_UPDATE) {
-        const {guesses, feedback} = stte;
+        const {guesses, feedback} = state;
 
         const pluralize = guesses.length !== 1;
 
-        let auralStatus = `Here's the status of the game right now: ${feedback} You've made ${guess.length} ${pluralize ? 'gueeses' :'guess'}.`;
+        let auralStatus = `Here's the status of the game right now: ${feedback} You've made ${guesses.length} ${pluralize ? 'gueeses' :'guess'}.`;
 
         if (guesses.length > 0) {
             auralStatus += ` ${pluralize ? 'In order of most- to least- recent, they are' : 'It was'}: ${guesses.reverse().join(', ')}`;

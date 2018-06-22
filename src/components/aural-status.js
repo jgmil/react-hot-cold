@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 export function AuralStatus(props) {
   return (
@@ -14,7 +14,7 @@ export function AuralStatus(props) {
   );
 }
 
-const mapStatetoProps = state => ({
+const mapStateToProps = state => ({
     auralStatus: state.auralStatus
 });
 
